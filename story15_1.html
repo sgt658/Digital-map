@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红船启航 - 南湖革命纪念馆</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 增大容器宽度 */
+        .container {
+            width: 95%; /* 从90%增加到95% */
+            max-width: 1400px; /* 从1200px增加到1400px */
+            margin: 0 auto;
+        }
+        
+        /* 故事详情页面头部 */
+        .story-detail-header {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(178, 34, 34, 0.85) 100%),
+                url('images/story-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        .story-detail-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .story-detail-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .story-detail-header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 增大内容区域宽度 */
+        .story-detail-content {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            padding: 2.5rem; /* 从2rem增加到2.5rem */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            line-height: 1.8;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .story-detail-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .story-detail-content h2 {
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .story-detail-content h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+        }
+        
+        .story-detail-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+        }
+        
+        .story-detail-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .story-detail-content img:hover {
+            transform: scale(1.02);
+            border-color: rgba(139, 0, 0, 0.2);
+        }
+        
+        /* 图片容器样式，支持多图布局 */
+        .image-gallery {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap; /* 允许换行 */
+        }
+
+        .image-gallery img {
+            width: 300px; /* 固定宽度 */
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .back-to-stories {
+            display: inline-block;
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        
+        .back-to-stories:hover {
+            background: linear-gradient(to right, #B22222, #8B0000);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* 引用样式 */
+        .quote {
+            background: linear-gradient(to right, rgba(139, 0, 0, 0.05), rgba(178, 34, 34, 0.05));
+            border-left: 4px solid #8B0000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10px;
+            font-size: 3rem;
+            color: rgba(139, 0, 0, 0.2);
+            line-height: 1;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%; /* 在移动设备上保持合理宽度 */
+            }
+            
+            .story-detail-content {
+                padding: 1.5rem; /* 在移动设备上减少内边距 */
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr; /* 移动设备上单列显示 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 故事详情页面头部 -->
+    <div class="story-detail-header">
+        <div class="container">
+            <h1>雷石根：梯田埂上的畲族忠魂</h1>
+        </div>
+    </div>
+
+    <!-- 故事详情内容 -->
+    <main class="container">
+        <div class="story-detail-content">
+            <p>
+                雷石根（1921-1948），云和下垟村畲族人，生于梯田边的佃农家庭，6 岁起随父亲耕作，练就 “踏田埂如走平地” 的本领。1943 年，国民党保长强占他家 3 亩梯田，还抢走秋收粮食，恰逢林艺圃在村里开展 “抗租减息” 斗争，雷石根愤而加入地下党，成为下垟村首个畲族党员。
+            <p>
+                1945 年下垟畲族党支部成立后，雷石根任交通员，独创 “山歌情报法”—— 将情报编入《田埂谣》，如 “稻谷黄了要割禾（开会）”“泉水枯了要找源（转移）”，在田间劳作时传唱传递。他的斗笠夹层藏着细棉纸，田埂石缝是秘密藏点，即便遇敌盘查，也能以 “看田水”“寻丢失农具” 为由脱身。1946 年夏，他冒暴雨穿越 12 公里梯田，将 “国民党军突袭计划” 送达县委，途中摔倒在田沟里，高烧昏迷仍紧抱斗笠，苏醒后第一句话是 “情报没湿，快送梅源”。
+            </p>
+            <p>
+                1947 年 “梯田保卫战” 中，雷石根带领 3 名党员组成 “诱饵队”，故意在梯田高处暴露行踪，将敌军引入 “九曲田垄阵”。敌军进入后，两侧田埂突然竖起竹篱，稻田注水成 “泥沼陷阱”，游击队趁机猛攻。战斗中他左臂中弹，却咬牙爬到制高点吹响牛角号，指挥村民 “断后路、堵山口”，成功掩护县委机关转移。
+            <p>
+            <div class="image-gallery">
+                <img src="image_base/15-1.jpg" alt="南湖红船">
+                <img src="image_base/15-2.jpg" alt="南湖红船">
+            </div>
+                1948 年 2 月，雷石根为联络金萧支队，在途经崇头镇时被叛徒出卖逮捕。敌人用烙铁烫、竹签扎，逼问党员名单，他始终怒骂：“梯田里的泥能埋了你们！共产党的根扎在百姓心里！”3 月 12 日临刑前，他面向下垟梯田方向，用畲语高唱《红军谣》，围观村民无不落泪。牺牲后，战友将他葬在常守的 3 号田埂边，如今那里的稻穗每年都比别处饱满，村民说 “是石根的血浇的”。
+            </p>
+            <p>
+                新中国成立后，当地政府在其牺牲处建 “石根亭”，梯田博物馆设专题展柜。2021 年，他的事迹被编入《浙南革命英烈传》，成为 “人民群众是革命主体” 的生动注脚。
+            </p>
+            <a href="base15.html" class="back-to-stories">返回</a>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

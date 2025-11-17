@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南湖革命纪念馆 - 浙江省红色研学基地</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 探索页面头部 */
+        .explore-header {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(178, 34, 34, 0.85) 100%),
+                url('images/base1-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        .explore-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .explore-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .explore-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 返回按钮固定在头部左上角 */
+        .back-header-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .back-header-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 移除原来的返回按钮样式 */
+        .back-btn {
+            display: none;
+        }
+        
+        .explore-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .main-content-section {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .main-content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+
+        .main-content-section p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-indent: 2em; /* 缩进两个字符 */
+        }
+        
+        .content-section h2 {
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .content-section h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .gallery-item {
+            height: 150px;
+            background-color: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        
+        .gallery-item::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(139, 0, 0, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            border-color: #8B0000;
+        }
+        
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            height: fit-content;
+            border-left: 4px solid #B22222;
+        }
+        
+        .info-box {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .info-box:last-child {
+            border-bottom: none;
+        }
+        
+        .info-box h3 {
+            color: #8B0000;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .info-box h3::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+        }
+        
+        .info-item {
+            display: flex;
+            margin-bottom: 0.8rem;
+            transition: background-color 0.2s;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .info-item:hover {
+            background-color: rgba(139, 0, 0, 0.05);
+        }
+        
+        .info-label {
+            font-weight: bold;
+            min-width: 80px;
+            color: #8B0000;
+        }
+        
+        .related-bases {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .related-base {
+            display: flex;
+            align-items: center;
+            padding: 0.8rem;
+            border-radius: 4px;
+            background: linear-gradient(to right, #f9f9f9, #f5f5f5);
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .related-base:hover {
+            background: linear-gradient(to right, #f5f5f5, #f0f0f0);
+            border-left-color: #8B0000;
+            transform: translateX(5px);
+        }
+        
+        .related-base img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 1rem;
+            border: 1px solid #e0e0e0;
+        }
+        
+        /* 探索性元素样式 */
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #8B0000, #B22222);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 50px;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background: linear-gradient(to bottom, #f9f9f9, #f5f5f5);
+            padding: 1rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            border-left: 3px solid #8B0000;
+        }
+        
+        .story-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .story-card {
+            background: linear-gradient(to bottom, #ffffff, #fef8f8);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border-top: 3px solid transparent;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(139, 0, 0, 0.15);
+            border-top-color: #8B0000;
+        }
+        
+        .story-image {
+            height: 150px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .story-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(139, 0, 0, 0.4), transparent);
+        }
+        
+        .story-content {
+            padding: 1rem;
+        }
+        
+        .story-content h4 {
+            color: #8B0000;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-point {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #8B0000, #B22222);
+            border-radius: 50%;
+            cursor: pointer;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+            transition: all 0.3s;
+        }
+        
+        .map-point:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+        }
+        
+        .map-point::after {
+            content: attr(data-info);
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .map-point:hover::after {
+            opacity: 1;
+        }
+        
+        /* 新增侧边栏内容样式 */
+        .sidebar-section {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .sidebar-section:last-child {
+            border-bottom: none;
+        }
+        
+        .sidebar-section h4 {
+            color: #8B0000;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .sidebar-section h4::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 5px;
+            background: #8B0000;
+            border-radius: 50%;
+        }
+        
+        .sidebar-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .sidebar-section li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+            transition: color 0.2s;
+        }
+        
+        .sidebar-section li:hover {
+            color: #8B0000;
+        }
+        
+        .sidebar-section li:before {
+            content: "•";
+            color: #8B0000;
+            position: absolute;
+            left: 0;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        .contact-info:hover {
+            background-color: rgba(139, 0, 0, 0.05);
+        }
+        
+        .contact-info i {
+            color: #8B0000;
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: linear-gradient(to right, #f0f0f0, #e8e8e8);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+            transition: all 0.2s;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .tag:hover {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.2);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        @media (max-width: 768px) {
+            .explore-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .story-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="explore-header">
+        <!-- 返回按钮固定在头部左上角 -->
+        <a href="index.html" class="back-header-btn">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <div class="container">
+            <h1>黄泽镇</h1>
+            <p>浙东人民抗日救国的重要窗口</p>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <main class="container">
+        <div class="explore-content">
+            <!-- 主要内容 -->
+            <div class="main-content">
+                <section class="main-content-section">
+                    <h2>基地介绍</h2>
+                    <p>
+                        黄泽镇地处浙江省绍兴市嵊州东部，是浙东地区重要的红色革命根据地，其红色教育基地以 “浙东抗日根据地黄泽分中心” 为核心，涵盖中共嵊州（嵊县）县委旧址、黄泽抗日武装集结点、革命烈士纪念碑等多处红色遗址。基地依托深厚的革命历史底蕴，成为展示浙东人民抗日救国、争取民族独立的重要窗口，也是开展马克思主义理论教育、培育爱国主义精神的实践课堂。
+                    </p>
+
+                    <div class="gallery">
+                        <div class="gallery-item" style="background-image: url('image_base/10-1.jpg');"></div>
+                        <div class="gallery-item" style="background-image: url('image_base/10-2.jpg');"></div>
+                        <div class="gallery-item" style="background-image: url('image_base/10-3.jpg');"></div>
+                        <div class="gallery-item" style="background-image: url('image_base/10-4.jpg');"></div>
+                    </div>
+                </section>
+                
+                <section class="main-content-section">
+                    <h2>历史背景</h2>
+                    <p>黄泽镇的革命历史贯穿新民主主义革命时期，其发展脉络深刻体现了“社会存在决定社会意识”“人民群众是历史的创造者”等马克思主义基本原理，关键时间节点与事件如下：<p></p>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1927</div>
+                            <div class="timeline-content">
+                                <h4>革命火种的孕育</h4>
+                                <p>
+                                    1927 年秋：中共党员竺连法（嵊州籍）受党组织派遣，回到黄泽镇开展农民运动。此时正值大革命失败后，国民党反动派实施白色恐怖，竺连法以 “教书先生” 身份为掩护，深入田间地头发动农民，组织 “农民协会”，提出 “减租减息” 口号 —— 这一实践印证了马原中 “经济基础决定上层建筑”，农民对土地的需求（经济基础）推动了革命意识（上层建筑）的觉醒。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1938</div>
+                            <div class="timeline-content">
+                                <h4>根据地的壮大与斗争</h4>
+                                <p>
+                                    1938 年 2 月：中共嵊县县委在黄泽镇后枣园村秘密成立，这是嵊州地区第一个县级党组织。县委以黄泽为中心，辐射周边乡镇，建立抗日救亡团体 “流动宣传队”，通过演讲、话剧等形式动员群众 —— 此过程体现了 **“意识对社会存在具有反作用”**，革命理论的传播激发了群众的抗日热情。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1945</div>
+                            <div class="timeline-content">
+                                <h4>抗战胜利</h4>
+                                <p>
+                                    黄泽镇群众配合新四军浙东纵队收复嵊州县城，至此，黄泽地区的抗日斗争取得阶段性胜利。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1947</div>
+                            <div class="timeline-content">
+                                <h4>迎接解放的斗争</h4>
+                                <p>
+                                    1947 年 3 月：中共嵊县工委在黄泽镇重建，领导群众开展 “反饥饿、反内战” 运动，组织学生罢课、工人罢工。此时国民党反动派加强对根据地的 “清剿”，工委成员依靠群众掩护，在山洞、柴房等隐蔽地点坚持斗争 —— 体现了“矛盾的普遍性与特殊性”，革命力量在敌强我弱的特殊矛盾中，通过灵活策略（特殊性）应对敌人的 “清剿”（普遍性矛盾）。
+                                </p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">1949</div>
+                            <div class="timeline-content">
+                                <h4>黄泽镇解放</h4>
+                                <p>
+                                    1949 年 5 月 22 日：黄泽镇迎来解放，成为嵊州最早解放的乡镇之一。当天，群众自发涌上街头，欢迎解放军入城，这一场景是 **“社会历史发展的总趋势是前进的、上升的”** 原理的生动体现。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="main-content-section">
+                    <h2>相关故事</h2>
+
+                    <div class="story-cards">
+                        <div class="story-card" onclick="window.location.href='story10_1.html'">
+                            <div class="story-image" style="background-image: url('image_base/10-3.jpg');"></div>
+                            <div class="story-content">
+                                <h4>黄泽江伏击战</h4>
+                                <p>群众与战士的生死配合</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            
+            <!-- 侧边栏 - 增加内容 -->
+            <div class="sidebar">
+                <div class="info-box">
+                    <h3>基地信息</h3>
+                    <div class="info-item">
+                        <span class="info-label">地址：</span>
+                        <span>浙江省绍兴市嵊州市黄泽镇后枣园村</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">开放时间：</span>
+                        <span>周二至周日 9:00-11:30（上午）、14:00-17:00（下午），周一闭馆</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">门票：</span>
+                        <span>免费开放</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h4>交通指南</h4>
+                    <ul>
+                        <li>公交：从嵊州市区乘坐 “嵊州 28 路” 公交（嵊州客运中心→黄泽镇政府站），下车后步行 500 米至县委旧址；绍兴市区可乘坐 “绍兴至嵊州” 城际公交，在黄泽镇换乘点转乘 28 路。</li>
+                        <li>自驾：高德 / 百度地图搜索 “中共嵊县县委旧址（黄泽镇）”，基地设有免费停车场（可容纳 50 辆小型汽车）</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h4>参观须知</h4>
+                    <ul>
+                        <li>10 人以上团体需提前 3 天预约</li>
+                        <li>公共区域可自由拍照，禁止使用闪光灯和自拍杆，避免影响其他参观者；</li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h4>红色标签</h4>
+                    <div class="tag-list">
+                        <span class="tag">浙东抗日根据地重要组成部分</span>
+                        <span class="tag">全国乡村振兴示范教育基地</span>
+                        <span class="tag">浙江省党史学习教育实践点</span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3>相关基地</h3>
+                    <div class="related-bases">
+                        <a  class="related-base">
+                            <div style="width: 60px; height: 60px; background-color: #ddd; border-radius: 4px; margin-right: 1rem;"></div>
+                            <div>
+                                <h4>浙北第一党支部旧址</h4>
+                            </div>
+                        </a>
+                        
+                        <a class="related-base">
+                            <div style="width: 60px; height: 60px; background-color: #ddd; border-radius: 4px; margin-right: 1rem;"></div>
+                            <div>
+                                <h4>嵊州革命烈士陵园</h4>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 地图点交互
+            const mapPoints = document.querySelectorAll('.map-point');
+            mapPoints.forEach(point => {
+                point.addEventListener('click', function() {
+                    const info = this.getAttribute('data-info');
+                    alert(`您点击了: ${info}`);
+                });
+            });
+            
+            // 图片画廊交互
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 在实际项目中，这里可以打开图片查看器
+                    alert('点击图片可查看大图');
+                });
+            });
+            
+            // 故事卡片交互
+            const storyCards = document.querySelectorAll('.story-card');
+            storyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    if(this.getAttribute('onclick')) {
+                        // 如果有点击事件，直接执行
+                        return;
+                    }
+                    alert('此故事详情页面正在开发中，敬请期待！');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

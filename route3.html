@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红色精神传承线 - 浙江省红色研学基地</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-left: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* 主内容区样式 */
+        .main-content {
+            padding: 2rem 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #8B0000;
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        /* 路线概述样式 */
+        .route-overview {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+        }
+        
+        .route-overview h2 {
+            color: #8B0000;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .route-overview h2 i {
+            margin-right: 10px;
+        }
+        
+        .route-overview p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-indent: 2em; /* 缩进两个字符 */
+        }
+        .site-text p {
+            text-indent: 2em;
+            line-height: 1.8;
+        }
+        
+        .route-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .highlight-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(139, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #8B0000;
+        }
+        
+        .highlight-card h3 {
+            color: #8B0000;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 站点样式 */
+        .site-section {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+        }
+        
+        .site-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .site-number {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+            margin-right: 1.5rem;
+        }
+        
+        .site-title {
+            color: #8B0000;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .site-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .site-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .site-image {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .site-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .experience-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .experience-title {
+            display: flex;
+            align-items: center;
+            color: #8B0000;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-title i {
+            margin-right: 10px;
+        }
+        
+        .experience-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .experience-card {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(139, 0, 0, 0.05);
+            padding: 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.1);
+        }
+        
+        .experience-card h4 {
+            color: #8B0000;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 路线地图样式 */
+        .map-container {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .zhejiang-map {
+            width: 95%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            background-image: url('map.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f9f3e9; 
+        }
+        
+        .base-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #8B0000, #B22222);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(139, 0, 0, 0.5);
+        }
+        
+        .base-marker::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .site-content {
+                flex-direction: column;
+            }
+            
+            .experience-content {
+                flex-direction: column;
+            }
+            
+            .route-map {
+                height: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🚩</span>
+                    <h1>浙江省红色研学基地</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container main-content">
+        <h2 class="page-title">红色精神传承线</h2>
+        
+        <!-- 路线概述 -->
+        <div class="route-overview">
+            <h2><i class="fas fa-route"></i> 路线概述</h2>
+            <p>红色精神传承线是一条聚焦中国共产党革命精神和红色文化传承的研学路线，通过实地考察杭州、衢州和丽水三个具有深厚红色文化底蕴的地区，深入了解浙江省在革命战争年代的奋斗历程和红色精神的传承发展。</p>
+            <p>本路线将带领学员体验革命先辈的奋斗历程，感受红色精神的伟大力量，培养爱国主义情怀和历史责任感，在沉浸式体验中传承红色基因。</p>
+            
+            <div class="route-highlights">
+                <div class="highlight-card">
+                    <h3><i class="fas fa-calendar-alt"></i> 行程天数</h3>
+                    <p>3天2夜</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> 途经地区</h3>
+                    <p>杭州 → 衢州 → 丽水</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-users"></i> 适合人群</h3>
+                    <p>中学生、大学生、青年团体</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-fire"></i> 主题特色</h3>
+                    <p>红色精神、文化传承、沉浸体验</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 路线地图 -->
+        <div class="map-container">
+            <div class="zhejiang-map">
+                <div class="base-marker" style="top: 39%; left: 47%;" data-name="浙东人民解放军金萧支队纪念馆"></div>
+                <div class="base-marker" style="top: 50%; left: 30%;" data-name="衢州上坪田村红军村"></div>
+                <div class="base-marker" style="top: 65%; left: 38%;" data-name="丽水遂昌中国工农红军挺进师纪念馆"></div>
+            </div>
+        </div>
+        
+        <!-- 第一站：杭州浙东人民解放军金萧支队纪念馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">1</div>
+                <div class="site-title">浙东人民解放军金萧支队纪念馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>浙东人民解放军金萧支队纪念馆位于杭州市桐庐县新合乡，是为纪念解放战争时期活跃在浙东地区的金萧支队而建立的专题纪念馆。金萧支队是解放战争时期浙东游击纵队的重要组成部分，为浙东地区的解放事业作出了重要贡献。</p>
+                    <p>纪念馆通过丰富的历史文物、图片和文献资料，全面展示了金萧支队的组建、发展和战斗历程，生动再现了革命先辈在艰苦环境中的英勇斗争。学员们将通过参观学习，了解金萧支队的革命事迹和革命精神，感受革命先辈的坚定信念和牺牲精神。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/金萧支队纪念馆.jpg" alt="浙东人民解放军金萧支队纪念馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-hiking"></i> "金萧足迹"徒步体验</h4>
+                        <p>开展"金萧足迹"徒步体验，沿着金萧支队当年的行军路线，感受革命先辈在艰苦环境中的奋斗精神。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-book"></i> "金萧故事"情景剧表演</h4>
+                        <p>参与"金萧故事"情景剧表演，扮演金萧支队战士角色，在角色扮演中加深对革命历史的理解和感悟。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第二站：衢州上坪田村红军村 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">2</div>
+                <div class="site-title">衢州上坪田村红军村</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>衢州上坪田村位于衢州市衢江区，是浙江省著名的红军村。这里是红军挺进师在浙西南活动的重要根据地，保存了大量红军时期的革命遗址和红色文化资源。</p>
+                    <p>上坪田村曾是红军挺进师的重要活动区域，留下了许多革命故事和英雄事迹。村内保存有红军司令部旧址、红军医院旧址、红军标语墙等革命遗址，是了解红军在浙江活动历史的重要场所。学员们将通过实地考察，了解红军在浙江的革命活动，感受革命先辈的奋斗精神。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/上坪田村.jpg" alt="衢州上坪田村红军村">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-utensils"></i> "红军饭"体验活动</h4>
+                        <p>参与"红军饭"体验活动，品尝红军时期的简朴食物，感受革命先辈在艰苦条件下的生活状态。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-paint-brush"></i> "红色标语"复原创作</h4>
+                        <p>开展"红色标语"复原创作，模仿红军时期的宣传标语，在创作中体会革命宣传的力量和意义。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三站：丽水遂昌中国工农红军挺进师纪念馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">3</div>
+                <div class="site-title">丽水遂昌中国工农红军挺进师纪念馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>中国工农红军挺进师纪念馆位于丽水市遂昌县，是为纪念红军挺进师在浙西南的革命活动而建立的专题纪念馆。红军挺进师是红军长征后留在南方坚持游击战争的重要力量，为浙西南革命根据地的创建和发展作出了重要贡献。</p>
+                    <p>纪念馆通过丰富的历史文物、图片和文献资料，全面展示了红军挺进师在浙西南的革命活动，生动再现了革命先辈在艰苦环境中的英勇斗争。学员们将通过参观学习，了解红军挺进师的革命事迹和革命精神，感受革命先辈的坚定信念和牺牲精神。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/遂昌挺进师纪念馆.jpg" alt="丽水遂昌中国工农红军挺进师纪念馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-map-marked-alt"></i> "挺进师路线"沙盘推演</h4>
+                        <p>参与"挺进师路线"沙盘推演，在沙盘上模拟红军挺进师的行军路线，了解革命先辈的战略决策。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-users"></i> "挺进师故事"分享会</h4>
+                        <p>开展"挺进师故事"分享会，分享红军挺进师的革命事迹，在交流中深化对红色精神的理解和传承。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

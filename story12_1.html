@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红船启航 - 南湖革命纪念馆</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 增大容器宽度 */
+        .container {
+            width: 95%; /* 从90%增加到95% */
+            max-width: 1400px; /* 从1200px增加到1400px */
+            margin: 0 auto;
+        }
+        
+        /* 故事详情页面头部 */
+        .story-detail-header {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(178, 34, 34, 0.85) 100%),
+                url('images/story-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        .story-detail-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .story-detail-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .story-detail-header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 增大内容区域宽度 */
+        .story-detail-content {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            padding: 2.5rem; /* 从2rem增加到2.5rem */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            line-height: 1.8;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .story-detail-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .story-detail-content h2 {
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .story-detail-content h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+        }
+        
+        .story-detail-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+        }
+        
+        .story-detail-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .story-detail-content img:hover {
+            transform: scale(1.02);
+            border-color: rgba(139, 0, 0, 0.2);
+        }
+        
+        /* 图片容器样式，支持多图布局 */
+        .image-gallery {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap; /* 允许换行 */
+        }
+
+        .image-gallery img {
+            width: 300px; /* 固定宽度 */
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .back-to-stories {
+            display: inline-block;
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        
+        .back-to-stories:hover {
+            background: linear-gradient(to right, #B22222, #8B0000);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* 引用样式 */
+        .quote {
+            background: linear-gradient(to right, rgba(139, 0, 0, 0.05), rgba(178, 34, 34, 0.05));
+            border-left: 4px solid #8B0000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10px;
+            font-size: 3rem;
+            color: rgba(139, 0, 0, 0.2);
+            line-height: 1;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%; /* 在移动设备上保持合理宽度 */
+            }
+            
+            .story-detail-content {
+                padding: 1.5rem; /* 在移动设备上减少内边距 */
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr; /* 移动设备上单列显示 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 故事详情页面头部 -->
+    <div class="story-detail-header">
+        <div class="container">
+            <h1> 包定：“浙东第一枪” 的擎旗者</h1>
+        </div>
+    </div>
+
+    <!-- 故事详情内容 -->
+    <main class="container">
+        <div class="story-detail-content">
+            <p>
+                1901 年，包定出生于亭旁镇一个贫苦农民家庭，幼年靠 “半工半读” 完成学业，1925 年考入浙江省立第六师范学校（今台州学院），在校期间接触马克思主义，1926 年加入中国共产党。1927 年 “四一二” 反革命政变后，他放弃留校任教的机会，回到家乡亭旁，立志 “以武装斗争唤醒民众，推翻压迫”。
+            </p>
+            <p>
+                初回亭旁，包定面临的最大挑战是 “群众对革命的不信任”。当时农民受 “封建思想” 影响，认为 “反抗官府就是造反”，甚至对包定的宣传避而远之。包定没有急于宣讲理论，而是从 “解决群众实际困难” 入手：1927 年冬，亭旁遭遇旱灾，地主趁机抬高粮价，包定带领党员骨干，打开地主 “周大户” 的粮仓，将 300 余担粮食分发给贫苦农民。分到粮食的农民王阿毛拉着包定的手说：“包先生，你说的革命，要是能让我们年年有饭吃，我们就跟着你干！” 这次 “分粮行动” 让包定明白：“革命理论必须与群众利益结合，才能落地生根。”
+            </p>
+            <p>
+                1928 年春，包定在亭旁小学以 “国文教师” 身份为掩护，开设 “夜校”，教农民读书写字，同时讲解 “耕者有其田” 的革命理想。他编写通俗易懂的歌谣：“种田的人没饭吃，织布的人没衣穿，不是天公不作美，是因为土豪劣绅把财贪！” 夜校学员从最初的 20 余人，发展到后来的 200 余人，不少学员成为起义的骨干力量。
+            </p>
+            <div class="image-gallery">
+                <img src="image_base/12-1.webp" alt="中共一大会址">
+                <img src="image_base/12-4.webp" alt="南湖红船">
+            </div>
+
+            <p>
+                为筹备起义，包定秘密打造武器：他组织铁匠在自家柴房里锻造大刀、长矛，还带领党员骨干到深山里制作 “土炸药”；为获取枪支，他冒着生命危险，潜入国民党亭旁警察所，摸清枪支存放位置 —— 这些准备工作，体现了他 “一切从实际出发” 的务实精神。1928 年 5 月 26 日，包定在亭旁城隍庙召开起义誓师大会，当他举起土枪，高呼 “打倒土豪劣绅，建立苏维埃” 时，300 余名起义队员齐声响应，声音震彻山谷。起义军攻占镇公所后，包定在戏台上宣布成立 “亭旁区苏维埃政府”，并亲手写下《土地改革纲领》，第一条就是 “没收所有地主土地，按人口平均分配”。
+            </p>
+            <p>
+                然而，起义的胜利仅维持了 2 天。1928 年 5 月 28 日，国民党军队重兵 “围剿”，起义军在狮子山与敌军激战。包定身先士卒，手持大刀与敌军拼杀，多处负伤仍坚持指挥。当得知突围已不可能时，他果断下令：“分散突围，保存力量，革命火种不能灭！” 突围后，包定转移至临海、天台等地继续开展斗争，但由于叛徒出卖，1929 年 11 月，他在临海被捕。
+            </p>
+
+            <p>
+                在狱中，国民党反动派对包定威逼利诱：先是许诺 “只要悔过，就任命你为县长”，被包定严词拒绝；后又动用酷刑，打断他的双腿，逼迫他招供党组织名单。包定始终坚贞不屈，在狱中写下《绝命诗》：“碧血洒芳草，正气壮山河。笑看刀光闪，高唱国际歌！”1930 年 6 月 22 日，包定在杭州陆军监狱就义，年仅 29 岁。临刑前，他高呼 “中国共产党万岁”，声音回荡在刑场上，感染了在场的许多群众。
+            </p>
+            <p>
+                包定的革命实践，深刻印证了 “理论与实践相结合”的马克思主义基本原则。他没有照搬马克思主义 “武装斗争” 理论，而是结合亭旁地区 “农民贫困、封建势力强大” 的实际，通过 “分粮食、办夜校” 等具体实践，将理论转化为群众能感知、能参与的行动，体现了 “实践
+            </p>
+
+            <a href="base12.html" class="back-to-stories">返回</a>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

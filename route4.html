@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非遗匠心·传承文化主题线 - 浙江省红色研学基地</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(139, 69, 19, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(101, 67, 33, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-left: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* 主内容区样式 */
+        .main-content {
+            padding: 2rem 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #8B4513;
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #8B4513, #A0522D);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        /* 路线概述样式 */
+        .route-overview {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B4513;
+        }
+        
+        .route-overview h2 {
+            color: #8B4513;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .route-overview h2 i {
+            margin-right: 10px;
+        }
+        
+        .route-overview p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-indent: 2em; /* 缩进两个字符 */
+        }
+        .site-text p {
+            text-indent: 2em;
+            line-height: 1.8;
+        }
+        
+        .route-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .highlight-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(139, 69, 19, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #8B4513;
+        }
+        
+        .highlight-card h3 {
+            color: #8B4513;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 站点样式 */
+        .site-section {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B4513;
+        }
+        
+        .site-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .site-number {
+            background: linear-gradient(to right, #8B4513, #A0522D);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(139, 69, 19, 0.3);
+            margin-right: 1.5rem;
+        }
+        
+        .site-title {
+            color: #8B4513;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .site-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .site-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .site-image {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .site-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .experience-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .experience-title {
+            display: flex;
+            align-items: center;
+            color: #8B4513;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-title i {
+            margin-right: 10px;
+        }
+        
+        .experience-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .experience-card {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(139, 69, 19, 0.05);
+            padding: 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.1);
+        }
+        
+        .experience-card h4 {
+            color: #8B4513;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 路线地图样式 */
+                .map-container {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .zhejiang-map {
+            width: 95%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            background-image: url('map.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f9f3e9; 
+        }
+        
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #8B4513, #A0522D);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(139, 69, 19, 0.5);
+        }
+        
+        .map-marker::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #8B4513, #A0522D);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B4513, #A0522D);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .site-content {
+                flex-direction: column;
+            }
+            
+            .experience-content {
+                flex-direction: column;
+            }
+            
+            .route-map {
+                height: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🏮</span>
+                    <h1>浙江省红色研学基地</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container main-content">
+        <h2 class="page-title">非遗匠心·传承文化主题线</h2>
+        
+        <!-- 路线概述 -->
+        <div class="route-overview">
+            <h2><i class="fas fa-route"></i> 路线概述</h2>
+            <p>"非遗匠心·传承文化"主题线是一条聚焦浙江省非物质文化遗产和传统工艺传承的研学路线，通过实地考察丽水云和梯田景区、金华永康锡雕馆、台州和合人间文化园和舟山展茅五匠馆四个具有深厚文化底蕴的地区，深入了解浙江省丰富的非物质文化遗产和传统工艺。</p>
+            <p>本路线将带领学员体验传统工艺的制作过程，感受非遗文化的独特魅力，培养文化自信和传承意识，在实践体验中理解中华优秀传统文化的价值和意义。</p>
+            
+            <div class="route-highlights">
+                <div class="highlight-card">
+                    <h3><i class="fas fa-calendar-alt"></i> 行程天数</h3>
+                    <p>4天3夜</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> 途经地区</h3>
+                    <p>丽水 → 金华 → 台州 → 舟山</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-users"></i> 适合人群</h3>
+                    <p>中学生、大学生、文化爱好者</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-hands"></i> 主题特色</h3>
+                    <p>非遗文化、传统工艺、匠心传承</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 路线地图 -->
+        <div class="map-container">
+            <div class="zhejiang-map">
+                <div class="map-marker" style="top: 65%; left: 38%;" data-name="丽水云和梯田景区"></div>
+                <div class="map-marker" style="top: 60%; left: 45%;" data-name="金华永康锡雕馆"></div>
+                <div class="map-marker" style="top: 55%; left: 59%;" data-name="台州和合人间文化园"></div>
+                <div class="map-marker" style="top: 28%; left: 75%;" data-name="舟山展茅五匠馆"></div>
+            </div>
+        </div>
+        
+        <!-- 第一站：丽水云和梯田景区 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">1</div>
+                <div class="site-title">丽水云和梯田景区</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>云和梯田位于丽水市云和县崇头镇，是华东地区最大的梯田群，被誉为"中国最美梯田"。这里不仅有壮丽的自然景观，还蕴含着丰富的农耕文化和畲族文化，是了解中国传统农耕文明的重要场所。</p>
+                    <p>云和梯田始建于唐初，兴于元、明，距今已有1000多年历史，是劳动人民智慧的结晶。梯田景区内保存了完整的农耕生态系统和传统的农耕技艺，是研究中国农耕文化的重要基地。学员们将通过实地考察，了解梯田的形成历史、农耕文化的内涵以及畲族文化的特色。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/云和梯田.jpg" alt="丽水云和梯田景区">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-seedling"></i> 传统农耕体验</h4>
+                        <p>参与传统农耕体验，学习梯田耕作技艺，亲手种植水稻或蔬菜，感受农耕文化的魅力。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-music"></i> 畲族文化体验</h4>
+                        <p>体验畲族传统文化，学习畲族歌舞、服饰和民俗，了解畲族文化的独特魅力。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第二站：金华永康锡雕馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">2</div>
+                <div class="site-title">金华永康锡雕馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>永康锡雕馆位于金华市永康市，是展示永康锡雕技艺的专题博物馆。永康锡雕是浙江省非物质文化遗产，有着悠久的历史和独特的艺术风格，是中国传统金属工艺的重要代表。</p>
+                    <p>永康锡雕起源于宋代，兴盛于明清，至今已有千年历史。锡雕技艺精湛，作品造型优美，纹饰精致，具有很高的艺术价值和实用价值。锡雕馆通过丰富的展品和现场演示，全面展示了永康锡雕的历史渊源、工艺特点和艺术成就。学员们将通过参观学习，了解锡雕技艺的传承发展，感受传统工艺的精湛技艺和独特魅力。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/永康锡雕.jpeg" alt="金华永康锡雕馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-hammer"></i> 锡雕技艺体验</h4>
+                        <p>参与锡雕技艺体验，在工匠指导下学习基本的锡雕技法，亲手制作简单的锡雕作品。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-gem"></i> 锡器修复体验</h4>
+                        <p>体验锡器修复技艺，学习传统修复方法，了解锡器保养和修复的知识。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三站：台州和合人间文化园 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">3</div>
+                <div class="site-title">台州和合人间文化园</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>和合人间文化园位于台州市天台县，是以和合文化为主题的综合性文化园区。和合文化是中国传统文化的重要组成部分，强调和谐、和睦、合作的精神，具有深厚的历史底蕴和现实意义。</p>
+                    <p>文化园通过丰富的展陈和体验活动，全面展示了和合文化的内涵和价值，包括和合二仙传说、和合文化在民间的传承发展以及和合文化在现代社会的应用。园区内还设有传统工艺体验区、文化创意产品展示区等，是了解和体验和合文化的重要场所。学员们将通过参观学习，了解和合文化的精髓，感受中国传统文化的智慧和魅力。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/和合文化园.jpg" alt="台州和合人间文化园">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-hands"></i> 和合文化体验</h4>
+                        <p>参与和合文化体验活动，学习和合文化的内涵，体验传统礼仪和民俗活动。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-paint-brush"></i> 传统工艺体验</h4>
+                        <p>体验传统工艺制作，学习剪纸、刺绣等传统技艺，感受手工制作的乐趣。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第四站：舟山展茅五匠馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">4</div>
+                <div class="site-title">舟山展茅五匠馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>展茅五匠馆位于舟山市普陀区展茅街道，是展示舟山传统五匠技艺的专题博物馆。五匠指的是木匠、泥匠、石匠、铁匠和篾匠，是传统社会中重要的手工业者，他们的技艺是传统工艺的重要组成部分。</p>
+                    <p>五匠馆通过丰富的实物展品、工具展示和工艺演示，全面展示了五匠技艺的历史渊源、工艺特点和传承发展。馆内还设有互动体验区，让参观者能够亲身体验传统工艺的制作过程。学员们将通过参观学习，了解五匠技艺的精湛和智慧，感受传统工艺的实用价值和艺术价值。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/五匠馆.webp" alt="舟山展茅五匠馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-tools"></i> 五匠技艺体验</h4>
+                        <p>参与五匠技艺体验，选择木工、竹编等传统工艺，在工匠指导下制作简单的手工艺品。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-cogs"></i> 工具制作体验</h4>
+                        <p>体验传统工具制作，学习传统工具的使用方法和制作工艺，了解工具在传统工艺中的重要性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

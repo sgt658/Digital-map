@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>"两山理念"产业转型线 - 浙江省红色研学基地</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-left: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* 主内容区样式 */
+        .main-content {
+            padding: 2rem 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #8B0000;
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        /* 路线概述样式 */
+        .route-overview {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+        }
+        
+        .route-overview h2 {
+            color: #8B0000;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .route-overview h2 i {
+            margin-right: 10px;
+        }
+        
+        .route-overview p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-indent: 2em; /* 缩进两个字符 */
+        }
+        .site-text p {
+            text-indent: 2em;
+            line-height: 1.8;
+        }
+        
+        .route-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .highlight-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(139, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #8B0000;
+        }
+        
+        .highlight-card h3 {
+            color: #8B0000;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 站点样式 */
+        .site-section {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+        }
+        
+        .site-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .site-number {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+            margin-right: 1.5rem;
+        }
+        
+        .site-title {
+            color: #8B0000;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .site-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .site-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .site-image {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .site-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .experience-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .experience-title {
+            display: flex;
+            align-items: center;
+            color: #8B0000;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-title i {
+            margin-right: 10px;
+        }
+        
+        .experience-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .experience-card {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(139, 0, 0, 0.05);
+            padding: 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.1);
+        }
+        
+        .experience-card h4 {
+            color: #8B0000;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 路线地图样式 */
+        .map-container {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .zhejiang-map {
+            width: 95%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            background-image: url('map.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f9f3e9; 
+        }
+        
+        .base-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #8B0000, #B22222);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(139, 0, 0, 0.5);
+        }
+        
+        .base-marker::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .site-content {
+                flex-direction: column;
+            }
+            
+            .experience-content {
+                flex-direction: column;
+            }
+            
+            .route-map {
+                height: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🚩</span>
+                    <h1>浙江省红色研学基地</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container main-content">
+        <h2 class="page-title">"两山理念"产业转型线</h2>
+        
+        <!-- 路线概述 -->
+        <div class="route-overview">
+            <h2><i class="fas fa-route"></i> 路线概述</h2>
+            <p>"两山理念"产业转型线是一条聚焦生态文明建设和绿色发展的研学路线，通过实地考察湖州安吉、绍兴嵊州和台州仙居三个代表性地区，深入了解浙江省在"绿水青山就是金山银山"理念指导下的产业转型升级实践。</p>
+            <p>本路线将带领学员亲身体验从传统资源开发到生态经济发展的转变历程，探索绿色发展模式，培养生态文明意识。</p>
+            
+            <div class="route-highlights">
+                <div class="highlight-card">
+                    <h3><i class="fas fa-calendar-alt"></i> 行程天数</h3>
+                    <p>3天2夜</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> 途经地区</h3>
+                    <p>湖州 → 绍兴 → 台州</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-users"></i> 适合人群</h3>
+                    <p>中学生、大学生、企业团队</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-leaf"></i> 主题特色</h3>
+                    <p>生态转型、绿色发展、产业升级</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 路线地图 -->
+        <div class="map-container">
+            <div class="zhejiang-map">
+                <div class="base-marker" style="top: 16%; left: 41%;" data-name="安吉余村" ></div>
+                <div class="base-marker" style="top: 43%; left: 62%;" data-name="黄泽镇" ></div>
+                <div class="base-marker" style="top: 66%; left: 57%;" data-name="台州仙居神仙居" ></div>
+            </div>
+        </div>
+        
+        <!-- 第一站：湖州安吉余村 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">1</div>
+                <div class="site-title">湖州安吉余村</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>余村村地处天目山北麓，三面环山，一条小溪从村中流过，属北亚热带季风气候区，季风显著、四季分明；雨热同季、降水充沛。余村村先后被评为全国生态文化村、全国美丽宜居示范村，获全国文明村、全国民主法治示范村、联合国世界旅游组织最佳旅游乡村、全国乡村旅游重点村、全国乡村治理示范村等众多荣誉称号。<p>
+                    <p>安吉余村是"两山理念"的发源地，这里见证了从"卖石头"到"卖生态"的转型历程。学员们将参观矿山复绿公园、竹产业科技馆，深入了解绿色发展的实践路径。</p>
+                    <p>余村曾是依靠矿山开采和水泥产业发展的村庄，生态环境遭到严重破坏。在"两山理念"指导下，余村关停矿山和水泥厂，大力发展生态旅游和竹产业，实现了从"石头经济"到"生态经济"的华丽转身。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/安吉村.webp" alt="安吉余村风光">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-calculator"></i> 生态价值核算模拟</h4>
+                        <p>参与"生态价值核算"模拟活动，学习量化森林碳汇、水资源等生态资产的方法，了解生态系统服务的价值评估。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-hammer"></i> 竹制品环保DIY</h4>
+                        <p>体验竹制品环保DIY，用可再生竹材制作生活用品，了解竹材的特性和可持续利用方式。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第二站：绍兴嵊州黄泽镇 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">2</div>
+                <div class="site-title">绍兴嵊州黄泽镇</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>黄泽镇是现代农业发展的典范，学员们将探访现代农业产业园，考察茶叶、果蔬等农产品的绿色供应链，了解"农业全产业链"绿色发展模式。</p>
+                    <p>黄泽镇通过科技创新和绿色发展理念，实现了农业生产与生态保护的协调发展，形成了从种植、加工到销售的完整绿色产业链，为乡村振兴提供了可复制的样板。
+                        以“美景、美食、美人”的“三美”为主线，紧扣四明山资源、民间特色美食、手工匠人等资源，探索开展全域旅游工作。以打造“十里水果”长廊为抓手，串联京采农业、唐溪草庐、明山茶场等旅游点，同时积极打造村级网红打卡点建设，
+                        结合中国嵊州小吃城来吸引人气；并邀请社会资本参与民宿开发，提升旅游服务水平。将黄泽打造成宜居、宜业、宜游的休闲之地。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/黄泽镇.webp" alt="黄泽镇现代农业">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-flask"></i> 绿色农产品检测</h4>
+                        <p>参与绿色农产品检测实操，使用简易仪器检测农药残留，学习农产品质量安全控制方法。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-video"></i> 电商助农直播模拟</h4>
+                        <p>模拟"电商助农"直播，推广生态农产品并讲解绿色种植理念，体验数字化营销在农业转型中的应用。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三站：台州仙居神仙居 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">3</div>
+                <div class="site-title">台州仙居神仙居</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>神仙居又称韦羌山，属括苍山系，主峰大青岗，海拔1271米。整个神仙居景区以西罨幽谷为中心，形成峰、崖、溪、瀑景观，峰崖的相对高差多在100米以上，属于典型的流纹岩地貌。
+                        神仙居景区地质构造上隶属华南古板块，是火山喷发后留下的古老遗迹，是世界上最大的火山流纹岩地貌集群。景区植被则以针叶林为主，其森林植物群落处于前期演替阶段，植被退化程度较高。<p>
+                    <p>神仙居景区是生态旅游与保护协同发展的典范，学员们将调研景区生态修复、低碳运营（如新能源观光车、雨水回收系统）等举措，了解旅游业绿色发展模式。
+                    神仙居景区在开发过程中始终坚持生态优先原则，通过科学规划和精细管理，实现了旅游发展与生态保护的良性互动，为生态敏感地区的旅游开发提供了宝贵经验。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/神仙居.webp" alt="仙居神仙居景区">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-search"></i> "生态侦探"任务</h4>
+                        <p>开展"生态侦探"任务，记录景区低碳设施并分析其环保作用，培养生态观察和分析能力。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-mountain"></i> "无痕山林"实践</h4>
+                        <p>参与"无痕山林"实践，学习户外垃圾打包与生态保护规范，培养环保意识和责任感。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

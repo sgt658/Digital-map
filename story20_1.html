@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红船启航 - 南湖革命纪念馆</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 增大容器宽度 */
+        .container {
+            width: 95%; /* 从90%增加到95% */
+            max-width: 1400px; /* 从1200px增加到1400px */
+            margin: 0 auto;
+        }
+        
+        /* 故事详情页面头部 */
+        .story-detail-header {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(178, 34, 34, 0.85) 100%),
+                url('images/story-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        .story-detail-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .story-detail-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .story-detail-header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 增大内容区域宽度 */
+        .story-detail-content {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            padding: 2.5rem; /* 从2rem增加到2.5rem */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            line-height: 1.8;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .story-detail-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .story-detail-content h2 {
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .story-detail-content h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+        }
+        
+        .story-detail-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+        }
+        
+        .story-detail-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .story-detail-content img:hover {
+            transform: scale(1.02);
+            border-color: rgba(139, 0, 0, 0.2);
+        }
+        
+        /* 图片容器样式，支持多图布局 */
+        .image-gallery {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap; /* 允许换行 */
+        }
+
+        .image-gallery img {
+            width: 300px; /* 固定宽度 */
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .back-to-stories {
+            display: inline-block;
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        
+        .back-to-stories:hover {
+            background: linear-gradient(to right, #B22222, #8B0000);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* 引用样式 */
+        .quote {
+            background: linear-gradient(to right, rgba(139, 0, 0, 0.05), rgba(178, 34, 34, 0.05));
+            border-left: 4px solid #8B0000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10px;
+            font-size: 3rem;
+            color: rgba(139, 0, 0, 0.2);
+            line-height: 1;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%; /* 在移动设备上保持合理宽度 */
+            }
+            
+            .story-detail-content {
+                padding: 1.5rem; /* 在移动设备上减少内边距 */
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr; /* 移动设备上单列显示 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 故事详情页面头部 -->
+    <div class="story-detail-header">
+        <div class="container">
+            <h1>陈作霖：以和合理念凝聚抗日力量的 “红色乡贤”</h1>
+        </div>
+    </div>
+
+    <!-- 故事详情内容 -->
+    <main class="container">
+        <div class="story-detail-content">
+            <p>
+                1938 年春，32 岁的陈作霖回到家乡天台，这位从上海大夏大学毕业的青年，此时已秘密加入中国共产党。受中共台州特委指派，他的任务是在天台建立党组织，动员群众开展抗日斗争。初回家乡，陈作霖面临的最大难题是 “人心涣散”：畲族与汉族群众因土地纠纷时有摩擦，乡绅们对 “共产党” 心存疑虑，普通农民则担心 “抗日会引来日军报复”—— 如何打破隔阂、凝聚力量，成为他首要解决的问题。
+            </p>
+            <p>
+                陈作霖想到了天台的 “和合文化”。他以 “乡贤” 身份，在 “乡贤祠”（和合人间文化馆前身）举办 “和合座谈会”，邀请畲族族长、汉族乡绅、农民代表参加。会上，他拿出《天台山和合志》，引用 “和而不同”“天下大同” 的理念，说 “日军侵华，就像打破了我们共同的‘家’，畲汉是兄弟，乡绅与农民是邻里，只有团结一心，才能守住家园”。为化解畲汉土地纠纷，他提出 “抗日期间暂免租税，战后共同开垦荒地” 的方案，得到双方认可；针对乡绅的疑虑，他承诺 “党组织尊重乡贤财产，只动员自愿捐粮支援前线”。
+            </p>
+            <p>
+                1940 年 5 月，日军轰炸天台县城后，陈作霖在 “乡贤祠” 成立 “抗日救亡服务站”，自任站长。他带头捐出家中积蓄，购置药品与粮食；畲族族长蓝阿婆则发动畲族妇女，连夜赶制 500 余双布鞋送给游击队；乡绅王敬之不仅捐赠 100 担粮食，还利用自己的商铺作为 “秘密联络点”，为党组织传递情报。服务站成立半年内，就动员 300 余名青年加入抗日自卫队，募集物资折合当时法币 2 万余元 —— 这些物资通过 “群众运输队”，源源不断送往浙东抗日根据地。
+            </p>
+            <div class="image-gallery">
+                <img src="image_base/20-1.webp" alt="中共一大会址">
+                <img src="image_base/20-3.webp" alt="南湖红船">
+            </div>
+            <p>
+                1942 年 10 月，日军占领天台平桥镇后，计划进攻天台县城。陈作霖组织 “情报传递网”：汉族农民以 “送菜” 为名，潜入日军驻地打探消息；畲族青年则利用山区小路，将情报快速送往游击队。一次，日军准备夜袭抗日自卫队驻地，畲族青年蓝小龙冒着生命危险，在深夜翻山越岭，跑了 20 多里路，及时将情报送达，使自卫队提前转移，避免了损失。
+            </p>
+            <p>
+                1943 年冬，由于叛徒出卖，陈作霖的身份暴露，国民党反动派悬赏捉拿他。在群众的掩护下，他先后躲藏在畲族村寨的山洞里、乡绅王敬之的商铺阁楼中，最终安全转移至浙南根据地。离开前，他对前来送行的群众说：“我走了，但‘和合’的精神还在，只要大家团结一心，胜利一定属于我们。”1945 年抗战胜利后，陈作霖回到天台，继续领导群众开展解放斗争，1949 年天台解放后，他担任天台县第一任教育局长，致力于 “和合文化” 与革命精神的传承。如今，和合人间文化馆红色展区内，专门设有 “陈作霖事迹展柜”，陈列着他当年使用的笔记本、捐赠物资的收据等文物，见证着一位 “红色乡贤” 以和合理念凝聚群众的革命历程。
+            </p>
+            <p>
+                陈作霖的革命实践，深刻体现了 “社会意识对社会存在的反作用这一马克思主义基本原理。“和合文化” 作为天台地区的本土社会意识，在陈作霖的引导下，从 “传统文化理念” 转化为 “抗日斗争的实践力量”—— 它化解了畲汉矛盾、消除了乡绅疑虑，使不同群体形成 “抗日统一战线”，印证了 “先进的社会意识能够促进社会存在的发展”。同时，陈作霖的工作方法也体现了 “具体问题具体分析” 的辩证法思想：针对不同群体（畲族、汉族、乡绅、农民）的特点，采用不同的动员策略，而非 “一刀切”，这正是 “矛盾特殊性” 原理在革命实践中的灵活运用。此外，群众积极参与捐粮、传递情报、掩护党员等行动，充分印证了 “人民群众是历史的创造者”，没有群众的支持，党组织的抗日斗争便失去了物质与精神根基。
+            </p>
+
+            <a href="base20.html" class="back-to-stories">返回</a>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

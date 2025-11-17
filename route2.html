@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>革命历史追寻线 - 浙江省红色研学基地</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 头部样式 */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #B22222 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            margin-left: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3));
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* 主内容区样式 */
+        .main-content {
+            padding: 2rem 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #8B0000;
+            position: relative;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .page-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        /* 路线概述样式 */
+        .route-overview {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+        }
+        
+        .route-overview h2 {
+            color: #8B0000;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .route-overview h2 i {
+            margin-right: 10px;
+        }
+        
+        .route-overview p {
+            margin-bottom: 1rem;
+            color: #555;
+            text-indent: 2em; /* 缩进两个字符 */
+        }
+        .site-text p {
+            text-indent: 2em;
+            line-height: 1.8;
+        }
+        
+        .route-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .highlight-card {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(139, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 3px solid #8B0000;
+        }
+        
+        .highlight-card h3 {
+            color: #8B0000;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 站点样式 */
+        .site-section {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+        }
+        
+        .site-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .site-number {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(139, 0, 0, 0.3);
+            margin-right: 1.5rem;
+        }
+        
+        .site-title {
+            color: #8B0000;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .site-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .site-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .site-image {
+            flex: 1;
+            min-width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .site-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .site-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .experience-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px dashed #ddd;
+        }
+        
+        .experience-title {
+            display: flex;
+            align-items: center;
+            color: #8B0000;
+            margin-bottom: 1rem;
+        }
+        
+        .experience-title i {
+            margin-right: 10px;
+        }
+        
+        .experience-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .experience-card {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(139, 0, 0, 0.05);
+            padding: 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.1);
+        }
+        
+        .experience-card h4 {
+            color: #8B0000;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 路线地图样式 */
+        .map-container {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .map-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .zhejiang-map {
+            width: 95%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            background-image: url('map.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #f9f3e9; 
+        }
+        
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #8B0000, #B22222);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(139, 0, 0, 0.5);
+        }
+        
+        .map-marker::after {
+            content: attr(data-name);
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .site-content {
+                flex-direction: column;
+            }
+            
+            .experience-content {
+                flex-direction: column;
+            }
+            
+            .route-map {
+                height: 300px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🚩</span>
+                    <h1>浙江省红色研学基地</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="container main-content">
+        <h2 class="page-title">革命历史追寻线</h2>
+        
+        <!-- 路线概述 -->
+        <div class="route-overview">
+            <h2><i class="fas fa-route"></i> 路线概述</h2>
+            <p>革命历史追寻线是一条聚焦中国共产党在浙江的革命历史和红色精神传承的研学路线，通过实地考察嘉兴南湖、杭州辛亥革命、中国共产党杭州历史以及抗日战争胜利浙江受降四个具有重要历史意义的纪念地，深入了解浙江省在革命战争年代的奋斗历程。</p>
+            <p>本路线将带领学员重温革命先辈的奋斗足迹，感受红色精神的伟大力量，培养爱国主义情怀和历史责任感。</p>
+            
+            <div class="route-highlights">
+                <div class="highlight-card">
+                    <h3><i class="fas fa-calendar-alt"></i> 行程天数</h3>
+                    <p>4天3夜</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-map-marker-alt"></i> 途经地区</h3>
+                    <p>嘉兴 → 杭州</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-users"></i> 适合人群</h3>
+                    <p>中学生、大学生、机关干部</p>
+                </div>
+                <div class="highlight-card">
+                    <h3><i class="fas fa-flag"></i> 主题特色</h3>
+                    <p>革命历史、红色精神、爱国主义</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 路线地图 -->
+        <div class="map-container">
+            <div class="zhejiang-map">
+                <div class="map-marker" style="top: 15%; left: 56%;" data-name="南湖革命纪念馆" ></div>
+                <div class="map-marker" style="top: 20%; left: 46%;" data-name="杭州辛亥革命纪念馆" ></div>
+                <div class="map-marker" style="top: 25%; left: 55%;" data-name="中国共产党杭州历史馆" ></div>
+                <div class="map-marker" style="top: 30%; left: 45%;" data-name="抗日战争胜利浙江受降纪念馆" ></div>
+            </div>
+        </div>
+        
+        <!-- 第一站：嘉兴南湖革命纪念馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">1</div>
+                <div class="site-title">嘉兴南湖革命纪念馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>南湖革命纪念馆位于嘉兴南湖畔，是中共"一大"会址纪念地，全面展示了中国共产党创建历史和"红船精神"的深刻内涵。这里是中国共产党梦想起航的地方，具有极其重要的历史地位。
+                        该馆的基本陈列为"中共一大史料陈列"，系统地介绍了1840年鸦片战争以后中国人民为寻求救国救民的道路而不断探索、抗争以及中国工人阶级的壮大、马克思主义在中国的传播、共产主义小组的建立直至中国共产党的成立这一历史史实。
+                        其中，着重介绍了中国共产党成立的历史过程。此外，还有"中国共产党的七十年"、"党和国家领导人对南湖的关怀"两个辅助陈列。</p>
+                    <p>纪念馆通过丰富的展品和现代化的展示手段，生动再现了中国共产党诞生的历史背景和过程，让学员们深刻理解中国共产党的初心和使命。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/南湖纪念馆.jpg" alt="嘉兴南湖革命纪念馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-microphone-alt"></i> "红船小讲解"培训</h4>
+                        <p>加入"红船小讲解"培训，在红船旁为游客讲解中共一大南湖会议故事，锻炼表达能力和历史认知。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-hammer"></i> 红船模型榫卯拼搭</h4>
+                        <p>动手用榫卯工艺拼搭红船模型，沉浸式理解"红船精神"的起源和中国共产党的初心使命。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第二站：杭州辛亥革命纪念馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">2</div>
+                <div class="site-title">杭州辛亥革命纪念馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>杭州辛亥革命纪念馆位于杭州市西湖区，是为纪念辛亥革命在浙江的发展历程而建立的专题纪念馆。辛亥革命是中国近代史上一次伟大的资产阶级民主革命，推翻了统治中国几千年的君主专制制度，开创了中国历史的新纪元。</p>
+                    <p>纪念馆通过丰富的历史文物、图片和文献资料，全面展示了辛亥革命在浙江的发展历程，重点介绍了浙江革命党人的英勇事迹和浙江在辛亥革命中的重要地位。学员们将通过参观学习，了解辛亥革命的历史意义和浙江革命党人的奋斗精神。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/辛亥革命纪念馆.jpg" alt="杭州辛亥革命纪念馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-newspaper"></i> "革命报刊"编辑体验</h4>
+                        <p>参与"革命报刊"编辑体验，模仿辛亥革命时期报刊风格，制作宣传革命思想的报纸。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-landmark"></i> "革命先辈"故事会</h4>
+                        <p>开展"革命先辈"故事会，分享浙江辛亥革命志士的英勇事迹，传承革命精神。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第三站：中国共产党杭州历史馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">3</div>
+                <div class="site-title">中国共产党杭州历史馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>中国共产党杭州历史馆位于杭州市西湖风景区内，是浙江省首个全面展示中国共产党在杭州发展历程的专题纪念馆。馆内珍藏了大量珍贵的历史文物、图片和文献资料，全面展示了从1922年杭州第一个党组织建立到新中国成立后党在杭州的奋斗历程。</p>
+                    <p>展馆分为"革命洪流""建设征程""改革新篇"和"时代华章"四个部分，通过现代化的展示手段，生动再现了中国共产党在杭州的光辉历程和伟大成就。学员们将通过参观学习，深入了解党在杭州的发展历程和革命先辈的奋斗精神。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/杭州历史馆.png" alt="中国共产党杭州历史馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-history"></i> "党史时光轴"制作</h4>
+                        <p>参与"党史时光轴"制作活动，梳理杭州党组织发展的关键节点，加深对党在杭州发展历程的理解。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-user-friends"></i> "革命先驱"角色扮演</h4>
+                        <p>体验"革命先驱"角色扮演，模拟早期党组织会议场景，感受革命先辈的理想信念和革命精神。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 第四站：抗日战争胜利浙江受降纪念馆 -->
+        <div class="site-section">
+            <div class="site-header">
+                <div class="site-number">4</div>
+                <div class="site-title">抗日战争胜利浙江受降纪念馆</div>
+            </div>
+            <div class="site-content">
+                <div class="site-text">
+                    <p>抗日战争胜利浙江受降纪念馆位于浙江省杭州市富阳区受降镇受降村（原富阳县长新乡宋殿村），是在原"受降厅"基础上扩建而成的浙江省唯一大型抗战胜利主题纪念设施，于2015年9月2日正式对外开放，总建筑面积2600多平方米。
+                        该馆所在地为1945年9月中国战区第六受降区洽降日军旧址，系浙江地区日军投降唯一指定地点，1995年"受降厅"修复开放，2014年启动扩建工程并修整"千人坑遗址"</p>
+                    <p>该馆所在地曾是1945年日军在浙江向中国军队投降的受降点，具有重要的历史意义。学员们将通过参观学习，深入了解抗日战争的历史背景、浙江军民的抗战事迹以及抗战胜利的伟大意义。</p>
+                </div>
+                <div class="site-image">
+                    <img src="image_route/受降馆.webp" alt="抗日战争胜利浙江受降纪念馆">
+                </div>
+            </div>
+            <div class="experience-section">
+                <h3 class="experience-title"><i class="fas fa-hands-helping"></i> 互动体验</h3>
+                <div class="experience-content">
+                    <div class="experience-card">
+                        <h4><i class="fas fa-puzzle-piece"></i> "抗战记忆"互动问答</h4>
+                        <p>参与"抗战记忆"互动问答，通过历史图片拼图还原关键战役场景，加深对抗战历史的理解和记忆。</p>
+                    </div>
+                    <div class="experience-card">
+                        <h4><i class="fas fa-broadcast-tower"></i> "战地通讯"模拟活动</h4>
+                        <p>体验"战地通讯"模拟活动，用简易信号设备传递情报，感受战时信息传递的不易和重要性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

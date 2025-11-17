@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红船启航 - 南湖革命纪念馆</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f9f2e8 0%, #f5e6d9 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加装饰性背景元素 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(178, 34, 34, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 增大容器宽度 */
+        .container {
+            width: 95%; /* 从90%增加到95% */
+            max-width: 1400px; /* 从1200px增加到1400px */
+            margin: 0 auto;
+        }
+        
+        /* 故事详情页面头部 */
+        .story-detail-header {
+            background: 
+                linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(178, 34, 34, 0.85) 100%),
+                url('images/story-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加头部装饰元素 */
+        .story-detail-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .story-detail-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .story-detail-header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 增大内容区域宽度 */
+        .story-detail-content {
+            background: linear-gradient(to bottom, #ffffff 0%, #fef8f8 100%);
+            border-radius: 8px;
+            padding: 2.5rem; /* 从2rem增加到2.5rem */
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+            line-height: 1.8;
+            border-left: 4px solid #8B0000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .story-detail-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(139, 0, 0, 0.15);
+        }
+        
+        .story-detail-content h2 {
+            color: #8B0000;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .story-detail-content h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(to right, #8B0000, #B22222);
+        }
+        
+        .story-detail-content p {
+            margin-bottom: 1.5rem;
+            text-indent: 2em;
+        }
+        
+        .story-detail-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .story-detail-content img:hover {
+            transform: scale(1.02);
+            border-color: rgba(139, 0, 0, 0.2);
+        }
+        
+        /* 图片容器样式，支持多图布局 */
+        .image-gallery {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            gap: 1.5rem;
+            margin: 2rem 0;
+            flex-wrap: wrap; /* 允许换行 */
+        }
+
+        .image-gallery img {
+            width: 300px; /* 固定宽度 */
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        
+        .back-to-stories {
+            display: inline-block;
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(139, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        
+        .back-to-stories:hover {
+            background: linear-gradient(to right, #B22222, #8B0000);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(139, 0, 0, 0.3);
+        }
+        
+        /* 引用样式 */
+        .quote {
+            background: linear-gradient(to right, rgba(139, 0, 0, 0.05), rgba(178, 34, 34, 0.05));
+            border-left: 4px solid #8B0000;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            font-style: italic;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 10px;
+            font-size: 3rem;
+            color: rgba(139, 0, 0, 0.2);
+            line-height: 1;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 L0,100 Z" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+            background-size: 20px 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%; /* 在移动设备上保持合理宽度 */
+            }
+            
+            .story-detail-content {
+                padding: 1.5rem; /* 在移动设备上减少内边距 */
+            }
+            
+            .image-gallery {
+                grid-template-columns: 1fr; /* 移动设备上单列显示 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 故事详情页面头部 -->
+    <div class="story-detail-header">
+        <div class="container">
+            <h1>红船边的 “守灯人”：王会悟与中共一大的 “生死守护”</h1>
+        </div>
+    </div>
+
+    <!-- 故事详情内容 -->
+    <main class="container">
+        <div class="story-detail-content">
+            <p>
+                1921 年 7 月，上海法租界望志路 106 号的小楼里，13 位来自各地的代表正在秘密召开中共一大。此时，一位 23 岁的年轻女性始终在门口警惕地张望，她就是会议组织者李达的妻子 —— 王会悟，也是这场 “开天辟地” 会议的 “幕后守护者”。
+            </p>
+            <p>
+                王会悟出生于浙江桐乡一个知识分子家庭，早年接受新思想熏陶，1920 年加入上海共产主义小组，成为中国早期共产主义运动中少有的女性参与者。1921 年一大召开前，李达因担心会议安全，让王会悟负责 “外围警戒”。7 月 23 日会议开始后，王会悟每天提前到达会场，检查周边环境，以 “李达夫人” 的身份接待代表，同时留意是否有可疑人员。7 月 30 日晚，会议进行到第六次时，一名陌生男子突然闯入会场，声称 “找社联的王主席”，王会悟瞬间察觉异常，立即示意代表们撤离。几分钟后，法租界巡捕带着警犬赶到，会场已空无一人 —— 正是王会悟的警惕，让一大代表躲过了第一次危机。
+            </p>
+            <p>
+                会议被迫中断后，代表们紧急商议下一步计划。有人提议转移到杭州，但王会悟认为杭州过于繁华，容易暴露；她想到自己的家乡嘉兴南湖，那里湖面开阔、船只众多，且她熟悉当地情况，便于隐蔽。“南湖的游船很安全，白天游人多，我们租一艘大船，以‘游湖’为名义开会，不会引起怀疑。” 王会悟的提议得到一致同意。
+            </p>
+            <div class="image-gallery">
+                <img src="image_base/2-1.jpg" alt="中共一大会址">
+                <img src="image_base/2-2.jpg" alt="南湖红船">
+            </div>
+
+            <p>
+                7 月 31 日清晨，王会悟提前从上海赶到嘉兴，先到南湖边的 “鸳湖旅馆” 预订房间，作为代表们的临时休息点，再前往码头租船。她特意挑选了一艘宽敞的 “单夹弄” 游船（即船中间有一条走廊，前后舱隔开，便于议事），并提前准备了麻将牌 —— 一旦遇到巡查，代表们可以装作 “打麻将娱乐”。当天上午 10 点左右，毛泽东、董必武、李达等代表分批抵达南湖，登上游船。王会悟则坐在船头，以 “摇橹” 为掩护，留意周边船只动向，同时让船家准备了午饭，确保会议不受干扰。
+            <p>
+            </p>
+                从上午到下午，代表们在船舱内激烈讨论，通过了党的第一个纲领 —— 明确 “党的名称为中国共产党”“党的奋斗目标是推翻资产阶级政权”，选举产生了中央局领导机构。下午 3 点左右，远处传来一阵汽笛声，一艘巡逻艇向游船靠近，王会悟立即示意代表们收起文件、摆出麻将牌。巡逻艇上的警察看到船上众人 “打牌娱乐”，并未细查，很快离开。一场可能危及党的成立的危机，再次被王会悟化解。
+            </p>
+            <p>
+                当天傍晚，中共一大在南湖游船上顺利闭幕。代表们悄悄离船，各自返回各地，中国共产党的历史从此翻开新的一页。而王会悟始终没有进入船舱参与讨论，她的任务是 “守好这盏革命的灯”，确保会议安全。事后有人问她：“你不怕吗？万一被抓了怎么办？” 王会悟回答：“我相信我们做的是对的事，是为了让老百姓过上好日子，就算有风险，也值得。
+            <p>
+            </p>
+                此后，王会悟继续投身革命事业，参与创办《妇女声》杂志，推动妇女解放运动；抗战时期，她在重庆、上海等地从事抗日救亡工作，始终坚守 “为人民服务” 的初心。1993 年，王会悟在北京逝世，享年 95 岁。她生前多次回到嘉兴南湖，站在红船边对后人说：“这艘船很小，但它载着中国革命的希望；当年我们人少，但我们相信马克思主义的真理，相信只要跟着党，中国就会有希望。
+            </p>
+            <p>
+                如今，在南湖革命纪念馆的 “中共一大历史展区”，陈列着王会悟当年使用过的手提箱、麻将牌复制品，以及她晚年回忆一大召开过程的录音资料。展墙上，一张王会悟与红船的合影格外醒目 —— 照片中的她白发苍苍，却依然挺直脊背，眼神坚定地望着红船，仿佛仍在守护着那段改变中国命运的历史。
+            <p>
+            </p>
+            这则故事深刻印证了马克思主义 “人民群众是历史的创造者” 原理。王会悟作为一名普通的革命参与者，没有身居高位，却以自己的智慧和勇气，在关键时刻保护了党的成立会议，成为 “中国革命源头” 的重要守护者。她的经历证明，革命的胜利不仅需要领导人的正确决策，更需要无数普通群众的参与和奉献 —— 正是这些 “平凡人” 的不平凡行动，汇聚成了推动中国社会发展的巨大力量。同时，王会悟对 “马克思主义真理的信仰”，也体现了 “先进思想对个人行动的引领作用”，她之所以敢于冒着生命危险守护会议，正是因为坚信马克思主义能够救中国，坚信中国共产党能够带领人民走向幸福，这正是马克思主义 “理想信念是革命行动的精神动力” 的生动体现。
+            </p>
+
+            <a href="base2.html" class="back-to-stories">返回</a>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>© 浙江省红色研学基地平台</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
